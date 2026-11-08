@@ -4,7 +4,7 @@
     <h1>أرشيف الرسائل والأطاريح<br>كلية الإدارة والاقتصاد</h1>
     <p>تصفّح أطاريح الدكتوراه ورسائل الماجستير والدبلوم العالي حسب القسم والسنة.</p>
     <form class="search" id="sf">
-      <input id="q" type="search" placeholder="ابحث باسم الطالب أو الباحث…" autocomplete="off">
+      <input id="q" type="search" placeholder="ابحث بعنوان الرسالة أو اسم الباحث…" autocomplete="off">
       <button type="submit">بحث</button>
     </form>
   </div></div>
@@ -31,7 +31,7 @@
   <div class="wrap">
     <div class="tabs" id="tabs"></div>
     <div class="filters" style="margin-top:14px">
-      <input id="dq" type="search" placeholder="ابحث داخل هذا القسم…" style="flex:1;min-width:180px">
+      <input id="dq" type="search" placeholder="ابحث بالعنوان أو الاسم داخل هذا القسم…" style="flex:1;min-width:180px">
       <select id="dYear"></select>
     </div>
     <div id="years"></div>
@@ -58,7 +58,7 @@ const DEG={phd:"أطروحات الدكتوراه",master:"رسائل الماج
 const DEGS=["phd","master","diploma"];
 const CATALOG=__CATALOG__;
 
-const ROWS=CATALOG.flatMap(g=>{const d=DEPTS.find(x=>x.n===g.dept);return g.items.map(it=>({id:it.id,f:it.f||[],n:it.n,dept:g.dept,dk:d?d.k:"",deg:g.deg,year:g.year}))});
+const ROWS=CATALOG.flatMap(g=>{const d=DEPTS.find(x=>x.n===g.dept);return g.items.map(it=>({id:it.id,f:it.f||[],t:it.t||"",n:it.n,dept:g.dept,dk:d?d.k:"",deg:g.deg,year:g.year}))});
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const norm=s=>String(s||"").toLowerCase().replace(/[ً-ْـ]/g,"").replace(/[أإآ]/g,"ا").replace(/ى/g,"ي").replace(/ة/g,"ه");
@@ -75,14 +75,12 @@ function stuCard(r,showCtx){
   const f=favs.includes(r.id),files=r.f||[],p=files[0];
   const main=p?`<a class="open" href="${dl(p[0])}" target="_blank" rel="noopener">⬇ تحميل</a>`:`<span class="open off">لا يوجد ملف</span>`;
   const more=files.length>1?`<details class="more"><summary>ملفات أخرى (${files.length-1})</summary>${files.slice(1).map(x=>`<a href="${dl(x[0])}" target="_blank" rel="noopener"><span>${esc(x[1])}</span><em>${esc(x[3].toUpperCase())} · ${sz(x[2])}</em></a>`).join("")}</details>`:"";
-  return `<article class="stu">
-    <div class="av">${esc(r.n.charAt(0))}</div>
-    <div class="si">
-      <b>${esc(r.n)}</b>
-      <span>${showCtx?esc(r.dept)+" · ":""}${esc(DEG[r.deg])} · ${r.year}${p?" · "+esc(p[3].toUpperCase())+" "+sz(p[2]):""}</span>
-    </div>
-    ${main}
-    <button class="fv" data-f="${esc(r.id)}" aria-label="مفضلة">${f?"★":"☆"}</button>
+  const meta=(showCtx?esc(r.dept)+" · ":"")+esc(DEG[r.deg])+" · "+r.year+(p?" · "+esc(p[3].toUpperCase())+" "+sz(p[2]):"");
+  return `<article class="stu${r.t?" has-t":""}">
+    ${r.t?`<h4 class="tt">${esc(r.t)}</h4>`:""}
+    <div class="who"><div class="av">${esc(r.n.charAt(0))}</div>
+      <div class="si"><b>${esc(r.n)}</b><span>${meta}</span></div>
+      ${main}<button class="fv" data-f="${esc(r.id)}" aria-label="مفضلة">${f?"★":"☆"}</button></div>
     ${more}
   </article>`;
 }
@@ -100,7 +98,7 @@ function renderHome(){
   $("#resBlock").classList.toggle("hide",!q);
   $("#deptBlock").classList.toggle("hide",!!q);
   if(q){
-    const r=ROWS.filter(x=>norm(x.n+" "+x.dept).includes(q));
+    const r=ROWS.filter(x=>norm(x.n+" "+x.t+" "+x.dept).includes(q));
     $("#resCount").textContent=r.length+" نتيجة";
     $("#resGrid").innerHTML=r.length?r.slice(0,150).map(x=>stuCard(x,true)).join(""):'<div class="empty">لا توجد نتائج مطابقة.</div>';
   }
@@ -124,7 +122,7 @@ function renderDept(){
   const q=norm(S.q).trim();
   let html="";
   (S.year?[+S.year]:ys).forEach(y=>{
-    const list=cur.filter(r=>r.year===y&&(!q||norm(r.n).includes(q)));
+    const list=cur.filter(r=>r.year===y&&(!q||norm(r.n+" "+r.t).includes(q)));
     if(!list.length)return;
     html+=`<section class="ysec"><h3>${y} <small>${list.length}</small></h3><div class="stu-grid">${list.map(r=>stuCard(r,false)).join("")}</div></section>`;
   });
