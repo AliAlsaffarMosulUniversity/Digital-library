@@ -215,63 +215,34 @@ footer{margin-top:50px;background:var(--navy2);color:#b9c4da;padding:26px 0;font
     </form>
   </div></div>
   <div class="wrap">
+    <div class="stats" id="stats"></div>
 <style>
 .gal{margin:26px 0 8px}
 .gal h2{margin-bottom:4px}
 .gal .gsub{color:var(--mute);font-size:14px;margin:0 0 14px}
-.mos{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:92px;gap:10px}
-.mos .gi{position:relative;overflow:hidden;border-radius:var(--r);cursor:pointer;background:#dcd8cc;border:0;padding:0;box-shadow:var(--sh)}
-.mos .gi:nth-child(1){grid-column:span 3;grid-row:span 3}
-.mos .gi:nth-child(2){grid-column:span 3;grid-row:span 2}
-.mos .gi:nth-child(3),.mos .gi:nth-child(4){grid-column:span 3;grid-row:span 1}
-.mos .gi:nth-child(n+5){grid-column:span 2;grid-row:span 2}
-.mos .gi img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
-.mos .gi:hover img{transform:scale(1.08)}
-.mos .gi::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(10,20,40,.72));opacity:.9;transition:opacity .3s}
-.mos .gi span{position:absolute;inset-inline:12px;bottom:9px;z-index:2;color:#fff;font-weight:700;font-size:14px;text-align:right;text-shadow:0 1px 6px rgba(0,0,0,.6)}
-.gall-btn{margin-top:14px;background:var(--navy);color:#fff;border:0;border-radius:999px;padding:10px 22px;font:700 15px Tajawal,sans-serif;cursor:pointer;box-shadow:var(--sh)}
-.gall-btn:hover{background:#0f2447}
-@media(max-width:700px){.mos{grid-template-columns:repeat(2,1fr);grid-auto-rows:110px}.mos .gi:nth-child(n){grid-column:span 1;grid-row:span 1}.mos .gi:nth-child(1){grid-column:span 2;grid-row:span 2}}
-.lb{position:fixed;inset:0;z-index:1000;background:radial-gradient(ellipse at center,rgba(14,26,52,.96),rgba(4,8,18,.98));display:none;flex-direction:column;align-items:center;justify-content:center;padding:18px 12px 12px;animation:lbin .35s ease}
-.lb.on{display:flex}
-@keyframes lbin{from{opacity:0}to{opacity:1}}
-.lb .stage{position:relative;width:min(1100px,100%);flex:1;min-height:0;display:flex;align-items:center;justify-content:center}
-.lb .stage img{max-width:100%;max-height:100%;object-fit:contain;border-radius:12px;box-shadow:0 20px 70px rgba(0,0,0,.6);animation:kb 9s ease-out both}
-@keyframes kb{from{opacity:.0;transform:scale(1.04)}8%{opacity:1}to{opacity:1;transform:scale(1)}}
-.lb .cap{color:#fff;text-align:center;margin:12px 0 8px;font-family:'Amiri',serif;font-size:22px}
-.lb .cap small{display:block;font:400 13px Tajawal,sans-serif;color:#cdbb8a;margin-top:2px}
-.lb .nav,.lb .x,.lb .play{position:absolute;z-index:3;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25);width:46px;height:46px;border-radius:50%;font-size:22px;cursor:pointer;backdrop-filter:blur(6px)}
-.lb .nav:hover,.lb .x:hover,.lb .play:hover{background:var(--gold)}
-.lb .prev{right:6px;top:50%;margin-top:-23px}.lb .next{left:6px;top:50%;margin-top:-23px}
-.lb .x{top:10px;left:10px}.lb .play{top:10px;left:64px;font-size:16px}
-.lb .cnt{position:absolute;top:18px;right:16px;color:#e8dcc0;font-weight:700;z-index:3}
-.lb .strip{display:flex;gap:8px;overflow-x:auto;max-width:min(1100px,100%);padding:6px 4px}
-.lb .strip button{flex:0 0 auto;width:74px;height:50px;border:2px solid transparent;border-radius:8px;overflow:hidden;padding:0;opacity:.55;cursor:pointer;background:#222}
-.lb .strip button.on{border-color:var(--gold);opacity:1}
-.lb .strip img{width:100%;height:100%;object-fit:cover}
-.lb .bar{position:absolute;bottom:0;right:0;left:0;height:3px;background:rgba(255,255,255,.1)}
-.lb .bar i{display:block;height:100%;width:0;background:var(--gold)}
+.ss{position:relative;height:clamp(320px,62vh,560px);border-radius:var(--r);overflow:hidden;background:#0e1a34;box-shadow:var(--sh)}
+.ss .sl{position:absolute;inset:0;opacity:0;transition:opacity .45s ease}
+.ss .sl.on{opacity:1;z-index:1}
+.ss .bg{position:absolute;inset:-30px;background-size:cover;background-position:center;filter:blur(24px) brightness(.55)}
+.ss .sl img{position:relative;display:block;height:100%;width:100%;object-fit:contain}
+.ss .cap{position:absolute;inset-inline:0;bottom:0;z-index:2;padding:40px 16px 34px;text-align:center;color:#fff;font:700 18px Tajawal,sans-serif;background:linear-gradient(180deg,transparent,rgba(6,12,26,.8));text-shadow:0 1px 6px rgba(0,0,0,.6);pointer-events:none}
+.ss .nav{position:absolute;top:50%;margin-top:-22px;z-index:3;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.14);color:#fff;font-size:22px;cursor:pointer;backdrop-filter:blur(6px)}
+.ss .nav:hover{background:var(--gold)}
+.ss .prev{right:10px}.ss .next{left:10px}
+.ss .dots{position:absolute;bottom:12px;inset-inline:0;z-index:3;display:flex;justify-content:center;gap:7px}
+.ss .dots button{width:9px;height:9px;padding:0;border-radius:50%;border:0;background:rgba(255,255,255,.45);cursor:pointer;transition:width .3s,background .3s}
+.ss .dots button.on{width:24px;border-radius:5px;background:var(--gold)}
+@media(prefers-reduced-motion:reduce){.ss .sl{transition:none}}
 </style>
-<section class="block gal" id="gal" style="display:none">
-  <h2>جولة مصوّرة في الكلية</h2>
-  <p class="gsub">لقطات من مبنى الكلية وساحاتها ومكتبتها وقاعاتها.</p>
-  <div class="mos" id="mos"></div>
-  <button class="gall-btn" id="galBtn" type="button">▶ افتح المعرض</button>
-</section>
-<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="معرض صور الكلية">
-  <div class="cnt" id="lbCnt"></div>
-  <button class="x" id="lbX" type="button" aria-label="إغلاق">✕</button>
-  <button class="play" id="lbPlay" type="button" aria-label="تشغيل تلقائي">❚❚</button>
-  <div class="stage">
-    <button class="nav prev" id="lbPrev" type="button" aria-label="السابقة">›</button>
-    <img id="lbImg" alt="">
-    <button class="nav next" id="lbNext" type="button" aria-label="التالية">‹</button>
+<section class="block gal" id="gal">
+  <h2>جولة مصوّرة في مكتبة الكلية</h2>
+  <p class="gsub">لقطات من مكتبة كلية الإدارة والاقتصاد وقاعاتها.</p>
+  <div class="ss" id="ss" aria-roledescription="عرض شرائح" aria-label="صور مكتبة الكلية">
+    <button class="nav prev" id="ssPrev" type="button" aria-label="السابقة">›</button>
+    <button class="nav next" id="ssNext" type="button" aria-label="التالية">‹</button>
+    <div class="dots" id="ssDots"></div>
   </div>
-  <div class="cap" id="lbCap"></div>
-  <div class="strip" id="lbStrip"></div>
-  <div class="bar"><i id="lbBar"></i></div>
-</div>
-    <div class="stats" id="stats"></div>
+</section>
     <section class="block hide" id="resBlock">
       <h2>نتائج البحث</h2>
       <div class="count" id="resCount"></div>
@@ -428,59 +399,30 @@ $("#dYear").addEventListener("change",e=>{S.year=e.target.value;renderDept()});
 window.addEventListener("hashchange",route);
 updFavN();route();
 
-/* ===== معرض صور الكلية ===== */
+/* ===== معرض صور الكلية: عرض شرائح، صورة كل ثانية ===== */
 (function(){
-const B="https://uomosul.edu.iq/en/administrationeconomic/wp-content/uploads/sites/13/2026/01/photo_2025-12-03_";
 const G=[
- ["21-21-43","المدخل الرئيس للكلية","بوابة العلم والمعرفة"],
- ["21-21-23","مكتبة الكلية","مكان هادئ للقراءة والدراسة"],
- ["21-21-49","أروقة الكلية","حركة الطلبة في ساحة الكلية"],
- ["21-21-50","مبنى الأقسام العلمية","واجهة الكلية"],
- ["21-21-26-2","حدائق الكلية","مساحات خضراء بين الأبنية"],
- ["21-21-41","رفوف المكتبة","كتب ومراجع في مختلف الاختصاصات"],
- ["21-21-52","واجهات الأقسام","الاقتصاد وإدارة التسويق"],
- ["21-22-01","قاعة الندوات","فعاليات الكلية العلمية"],
- ["21-22-07","قاعة المناقشات","مناقشة الرسائل والأطاريح"],
- ["21-22-00-2","معرض الأنشطة","نشاطات الكلية وفعالياتها"]];
-const gal=document.getElementById("gal"),mos=document.getElementById("mos"),lb=document.getElementById("lb");
-const img=document.getElementById("lbImg"),cap=document.getElementById("lbCap"),cnt=document.getElementById("lbCnt"),strip=document.getElementById("lbStrip"),bar=document.getElementById("lbBar"),pb=document.getElementById("lbPlay");
-let ok=G.map(()=>true),cur=0,timer=null,playing=true;
-const url=i=>B+G[i][0]+".jpg";
-function build(){
-  let loaded=0,tested=0;
-  G.forEach((g,i)=>{const t=new Image();t.onload=()=>{loaded++;done()};t.onerror=()=>{ok[i]=false;done()};t.src=url(i)});
-  function done(){tested++;if(tested<G.length)return;
-    const L=G.map((g,i)=>i).filter(i=>ok[i]);
-    if(L.length<4)return;
-    gal.style.display="";
-    mos.innerHTML=L.map((i,k)=>`<button class="gi" type="button" data-i="${i}" aria-label="${G[i][1]}"><img loading="lazy" src="${url(i)}" alt="${G[i][1]}"><span>${G[i][1]}</span></button>`).join("");
-    strip.innerHTML=L.map(i=>`<button type="button" data-i="${i}" aria-label="${G[i][1]}"><img loading="lazy" src="${url(i)}" alt=""></button>`).join("");
-    mos.onclick=e=>{const b=e.target.closest(".gi");if(b)open(+b.dataset.i)};
-    strip.onclick=e=>{const b=e.target.closest("button");if(b){show(+b.dataset.i);restart()}};
-  }
-}
-function list(){return G.map((g,i)=>i).filter(i=>ok[i])}
-function show(i){cur=i;img.style.animation="none";void img.offsetWidth;img.style.animation="";img.src=url(i);img.alt=G[i][1];
-  cap.innerHTML=G[i][1]+"<small>"+G[i][2]+"</small>";
-  const L=list();cnt.textContent=(L.indexOf(i)+1)+" / "+L.length;
-  [...strip.children].forEach(b=>{const on=+b.dataset.i===i;b.classList.toggle("on",on);if(on)b.scrollIntoView({inline:"center",block:"nearest",behavior:"smooth"})})}
-function step(d){const L=list();let k=(L.indexOf(cur)+d+L.length)%L.length;show(L[k])}
-function restart(){clearInterval(timer);bar.style.transition="none";bar.style.width="0";if(!playing||!lb.classList.contains("on"))return;
-  requestAnimationFrame(()=>requestAnimationFrame(()=>{bar.style.transition="width 5s linear";bar.style.width="100%"}));
-  timer=setInterval(()=>{step(1);restart()},5000)}
-function open(i){lb.classList.add("on");document.body.style.overflow="hidden";show(i);playing=true;pb.textContent="❚❚";restart()}
-function close(){lb.classList.remove("on");document.body.style.overflow="";clearInterval(timer)}
-document.getElementById("galBtn").onclick=()=>open(list()[0]);
-document.getElementById("lbX").onclick=close;
-document.getElementById("lbNext").onclick=()=>{step(1);restart()};
-document.getElementById("lbPrev").onclick=()=>{step(-1);restart()};
-pb.onclick=()=>{playing=!playing;pb.textContent=playing?"❚❚":"▶";restart()};
-lb.addEventListener("click",e=>{if(e.target===lb||e.target.classList.contains("stage"))close()});
-document.addEventListener("keydown",e=>{if(!lb.classList.contains("on"))return;
-  if(e.key==="Escape")close();else if(e.key==="ArrowLeft"){step(1);restart()}else if(e.key==="ArrowRight"){step(-1);restart()}});
-let sx=null;lb.addEventListener("touchstart",e=>{sx=e.touches[0].clientX},{passive:true});
-lb.addEventListener("touchend",e=>{if(sx===null)return;const d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>50){step(d<0?1:-1);restart()}sx=null});
-build();
+ ["images/library-01.jpg","مدخل مكتبة كلية الإدارة والاقتصاد"],
+ ["images/library-02.jpg","قاعة المطالعة الرئيسة"],
+ ["images/library-03.jpg","ركن الاقتصاد للقراءة والدراسة"],
+ ["images/library-04.jpg","طاولة الاجتماعات بين رفوف الكتب"],
+ ["images/library-05.jpg","رفوف المراجع والكتب العلمية"]];
+const ss=document.getElementById("ss"),dots=document.getElementById("ssDots");
+const S=G.map(([src,t])=>{const d=document.createElement("div");d.className="sl";
+  d.innerHTML=`<div class="bg" style="background-image:url('${src}')"></div><img src="${src}" alt="${t}"><div class="cap">${t}</div>`;
+  ss.insertBefore(d,dots);return d});
+dots.innerHTML=G.map((g,i)=>`<button type="button" aria-label="الصورة ${i+1}: ${g[1]}"></button>`).join("");
+const D=[...dots.children];let cur=0,timer=null;
+function show(i){cur=(i+G.length)%G.length;S.forEach((s,k)=>s.classList.toggle("on",k===cur));D.forEach((b,k)=>b.classList.toggle("on",k===cur))}
+function play(){clearInterval(timer);timer=setInterval(()=>show(cur+1),1000)}
+function stop(){clearInterval(timer)}
+document.getElementById("ssNext").onclick=()=>{show(cur+1);play()};
+document.getElementById("ssPrev").onclick=()=>{show(cur-1);play()};
+dots.onclick=e=>{const k=D.indexOf(e.target);if(k>=0){show(k);play()}};
+ss.addEventListener("mouseenter",stop);ss.addEventListener("mouseleave",play);
+let sx=null;ss.addEventListener("touchstart",e=>{sx=e.touches[0].clientX;stop()},{passive:true});
+ss.addEventListener("touchend",e=>{if(sx!==null){const d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>50)show(cur+(d<0?1:-1))}sx=null;play()});
+show(0);play();
 })();
 </script>
 </body>
