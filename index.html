@@ -179,6 +179,14 @@ header.top{box-shadow:0 6px 24px rgba(0,0,0,.25)}
 .who .av{width:32px;height:32px;font-size:14px}
 .stu .more{margin-top:8px}
 footer{margin-top:50px;background:var(--navy2);color:#b9c4da;padding:26px 0;font-size:14px;text-align:center}
+.lib-keeper{font-size:16px;color:#e8dcc0;margin-bottom:8px}
+.lib-keeper b{color:var(--gold);font-weight:700}
+.keeper{display:inline-flex;align-items:center;gap:10px;margin-top:16px;padding:7px 18px;border:1px solid rgba(232,200,110,.45);border-radius:999px;background:rgba(255,255,255,.06);animation:kglow 2s ease-in-out infinite}
+.keeper .k-lbl{color:#c3cee4;font-size:14px}
+.keeper .k-name{font-weight:800;font-size:clamp(17px,2.4vw,21px);background:linear-gradient(100deg,#b8862b 0%,#e9c46a 30%,#fff6d5 48%,#e9c46a 62%,#b8862b 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:kshine 2s linear infinite}
+@keyframes kshine{0%{background-position:100% 0}100%{background-position:-150% 0}}
+@keyframes kglow{0%,100%{box-shadow:0 0 0 rgba(233,196,106,0)}50%{box-shadow:0 0 18px rgba(233,196,106,.45)}}
+@media(prefers-reduced-motion:reduce){.keeper,.keeper .k-name{animation:none}}
 .hide{display:none!important}
 .toast{position:fixed;inset-block-end:20px;left:50%;transform:translateX(-50%);background:var(--navy2);color:#fff;padding:10px 20px;border-radius:99px;z-index:80;opacity:0;transition:.25s;pointer-events:none}
 .toast.on{opacity:1}
@@ -209,6 +217,7 @@ footer{margin-top:50px;background:var(--navy2);color:#b9c4da;padding:26px 0;font
   <div class="hero"><div class="wrap">
     <h1>أرشيف الرسائل والأطاريح<br>كلية الإدارة والاقتصاد</h1>
     <p>تصفّح أطاريح الدكتوراه ورسائل الماجستير والدبلوم العالي حسب القسم والسنة.</p>
+    <div class="keeper"><span class="k-lbl">أمينة المكتبة</span><span class="k-name">السيدة مشاعل جبر علي</span></div>
     <div class="ss" id="ss" aria-roledescription="عرض شرائح" aria-label="صور مكتبة الكلية">
       <button class="nav prev" id="ssPrev" type="button" aria-label="السابقة">›</button>
       <button class="nav next" id="ssNext" type="button" aria-label="التالية">‹</button>
@@ -281,7 +290,7 @@ footer{margin-top:50px;background:var(--navy2);color:#b9c4da;padding:26px 0;font
   </section></div>
 </main>
 
-<footer><div class="wrap">المكتبة الرقمية – كلية الإدارة والاقتصاد، جامعة الموصل. يتم التحميل مباشرة من Google Drive.</div></footer>
+<footer><div class="wrap"><div class="lib-keeper">أمينة المكتبة: <b>السيدة مشاعل جبر علي</b></div>المكتبة الرقمية – كلية الإدارة والاقتصاد، جامعة الموصل. يتم التحميل مباشرة من Google Drive.</div></footer>
 <div class="toast" id="toast"></div>
 
 <script>
