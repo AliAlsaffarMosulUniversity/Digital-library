@@ -209,6 +209,11 @@ footer{margin-top:50px;background:var(--navy2);color:#b9c4da;padding:26px 0;font
   <div class="hero"><div class="wrap">
     <h1>أرشيف الرسائل والأطاريح<br>كلية الإدارة والاقتصاد</h1>
     <p>تصفّح أطاريح الدكتوراه ورسائل الماجستير والدبلوم العالي حسب القسم والسنة.</p>
+    <div class="ss" id="ss" aria-roledescription="عرض شرائح" aria-label="صور مكتبة الكلية">
+      <button class="nav prev" id="ssPrev" type="button" aria-label="السابقة">›</button>
+      <button class="nav next" id="ssNext" type="button" aria-label="التالية">‹</button>
+      <div class="dots" id="ssDots"></div>
+    </div>
     <form class="search" id="sf">
       <input id="q" type="search" placeholder="ابحث بعنوان الرسالة أو اسم الباحث…" autocomplete="off">
       <button type="submit">بحث</button>
@@ -233,16 +238,13 @@ footer{margin-top:50px;background:var(--navy2);color:#b9c4da;padding:26px 0;font
 .ss .dots button{width:9px;height:9px;padding:0;border-radius:50%;border:0;background:rgba(255,255,255,.45);cursor:pointer;transition:width .3s,background .3s}
 .ss .dots button.on{width:24px;border-radius:5px;background:var(--gold)}
 @media(prefers-reduced-motion:reduce){.ss .sl{transition:none}}
+.ss{position:relative;width:min(440px,100%);height:200px;margin:16px auto 8px;border:2px solid rgba(212,175,90,.8);border-radius:16px;overflow:hidden;background:#0e1a34;box-shadow:0 8px 26px rgba(0,0,0,.35)}
+.ss .sl img{object-fit:cover;object-position:50% 40%}
+.ss .cap{padding:28px 12px 24px;font-size:14px}
+.ss .nav{width:30px;height:30px;margin-top:-15px;font-size:18px}
+.ss .dots{bottom:7px;gap:4px}.ss .dots button{width:6px;height:6px}.ss .dots button.on{width:16px}
+
 </style>
-<section class="block gal" id="gal">
-  <h2>جولة مصوّرة في مكتبة الكلية</h2>
-  <p class="gsub">لقطات من مكتبة كلية الإدارة والاقتصاد وقاعاتها.</p>
-  <div class="ss" id="ss" aria-roledescription="عرض شرائح" aria-label="صور مكتبة الكلية">
-    <button class="nav prev" id="ssPrev" type="button" aria-label="السابقة">›</button>
-    <button class="nav next" id="ssNext" type="button" aria-label="التالية">‹</button>
-    <div class="dots" id="ssDots"></div>
-  </div>
-</section>
     <section class="block hide" id="resBlock">
       <h2>نتائج البحث</h2>
       <div class="count" id="resCount"></div>
@@ -406,7 +408,23 @@ const G=[
  ["images/library-02.jpg","قاعة المطالعة الرئيسة"],
  ["images/library-03.jpg","ركن الاقتصاد للقراءة والدراسة"],
  ["images/library-04.jpg","طاولة الاجتماعات بين رفوف الكتب"],
- ["images/library-05.jpg","رفوف المراجع والكتب العلمية"]];
+ ["images/library-05.jpg","رفوف المراجع والكتب العلمية"],
+ ["images/lib-09.jpg","المكتبة الرقمية – المدخل الزجاجي"],
+ ["images/lib-03.jpg","قاعة المطالعة والاجتماعات"],
+ ["images/lib-01.jpg","قاعة المطالعة الهادئة"],
+ ["images/lib-13.jpg","قسم الاقتصاد"],
+ ["images/lib-07.jpg","قسم المحاسبة"],
+ ["images/lib-04.jpg","قسم العلوم المالية والمصرفية"],
+ ["images/lib-05.jpg","قسم إدارة الأعمال"],
+ ["images/lib-10.jpg","قسم نظم المعلومات الإدارية"],
+ ["images/lib-02.jpg","رفوف المراجع الأجنبية"],
+ ["images/lib-06.jpg","رفوف الكتب العربية"],
+ ["images/lib-11.jpg","أروقة المكتبة بين الرفوف"],
+ ["images/lib-08.jpg","ركن الدراسة"],
+ ["images/lib-12.jpg","قاعة القراءة الجماعية"],
+ ["images/lib-14.jpg","القاعة الرئيسة للمكتبة"],
+ ["images/lib-15.jpg","رواق الرفوف الرخامي"],
+ ["images/lib-16.jpg","طاولة الاجتماعات والورود"]];
 const ss=document.getElementById("ss"),dots=document.getElementById("ssDots");
 const S=G.map(([src,t])=>{const d=document.createElement("div");d.className="sl";
   d.innerHTML=`<div class="bg" style="background-image:url('${src}')"></div><img src="${src}" alt="${t}"><div class="cap">${t}</div>`;
