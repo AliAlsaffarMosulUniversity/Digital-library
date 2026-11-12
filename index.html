@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>المكتبة الرقمية – كلية الإدارة والاقتصاد</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0f2444">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="المكتبة الرقمية">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -196,6 +204,38 @@ footer{margin-top:50px;background:var(--navy2);color:#b9c4da;padding:26px 0;font
   .bars .lab{width:100px}
 }
 </style>
+<style>
+.inst{position:relative;display:flex;align-items:center;gap:14px;margin:18px auto 0;max-width:760px;text-align:right;padding:16px 18px;border-radius:22px;overflow:hidden;background:linear-gradient(135deg,#fffdf7 0%,#f6ecd4 100%);border:1.5px solid rgba(184,137,43,.55);box-shadow:0 14px 34px rgba(0,0,0,.35),inset 0 1px 0 #fff}
+.inst[hidden]{display:none}
+.inst::before{content:"";position:absolute;inset-inline-end:-50px;top:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(184,137,43,.28),transparent 70%);pointer-events:none}
+.inst .ic{position:relative;flex:none;width:60px;height:60px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(150deg,var(--navy),var(--navy2));box-shadow:0 8px 18px rgba(15,36,68,.35),0 0 0 3px rgba(184,137,43,.35)}
+.inst .ic img{width:44px;height:44px;border-radius:50%;background:#fff;padding:2px;object-fit:contain}
+.inst .ic i{position:absolute;inset-inline-start:-6px;bottom:-6px;width:24px;height:24px;border-radius:50%;background:var(--gold);color:#fff;display:grid;place-items:center;border:2px solid #fffdf7}
+.inst .tx{min-width:0}
+.inst .tx b{display:block;font-size:17px;font-weight:800;color:var(--navy2);line-height:1.5}
+.inst .tx span{display:block;font-size:13px;color:var(--mute);line-height:1.7}
+.inst .go{margin-inline-start:auto;flex:none;position:relative;overflow:hidden;display:flex;align-items:center;gap:9px;border:0;border-radius:15px;padding:13px 22px;font:800 15px Tajawal,sans-serif;color:#fff;cursor:pointer;background:linear-gradient(135deg,#1d427a,var(--navy2));box-shadow:0 8px 18px rgba(15,36,68,.38),inset 0 0 0 1px rgba(255,255,255,.1);transition:transform .15s}
+.inst .go:active{transform:scale(.97)}
+.inst .go svg{width:20px;height:20px;animation:instb 1.8s ease-in-out infinite}
+.inst .go::after{content:"";position:absolute;top:0;bottom:0;width:40%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);animation:insts 3.6s ease-in-out infinite}
+@keyframes instb{0%,100%{transform:translateY(-2px)}50%{transform:translateY(2px)}}
+@keyframes insts{0%,55%{left:-60%}100%{left:130%}}
+.inst .x{position:absolute;top:7px;inset-inline-end:9px;width:26px;height:26px;border:0;border-radius:50%;background:rgba(15,36,68,.07);color:var(--mute);font-size:16px;line-height:1;cursor:pointer}
+@media(max-width:560px){.inst{flex-wrap:wrap;padding:16px 16px 14px}.inst .go{width:100%;justify-content:center;margin:4px 0 0}.inst .tx b{font-size:16px}}
+@media(prefers-reduced-motion:reduce){.inst .go svg,.inst .go::after{animation:none}}
+#instTop{display:none;border:1.5px solid var(--gold);background:transparent;color:#f6d98f;border-radius:10px;padding:6px 11px;font:700 13px Tajawal,sans-serif;cursor:pointer;align-items:center;gap:5px}
+#instTop.on{display:inline-flex}
+.isheet{position:fixed;inset:0;z-index:90;display:none;align-items:flex-end;justify-content:center;background:rgba(8,18,40,.55);backdrop-filter:blur(3px)}
+.isheet.on{display:flex}
+.isheet .pn{width:min(480px,100%);background:#fff;border-radius:24px 24px 0 0;padding:22px 22px 26px;box-shadow:0 -12px 40px rgba(0,0,0,.3);animation:instu .28s ease}
+@keyframes instu{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+.isheet h3{margin:0 0 4px;font-size:19px;color:var(--navy2)}
+.isheet p{margin:0 0 14px;color:var(--mute);font-size:13.5px}
+.isheet ol{list-style:none;margin:0;padding:0;counter-reset:s}
+.isheet li{counter-increment:s;display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--line);font-size:15px;line-height:1.8}
+.isheet li::before{content:counter(s);flex:none;width:28px;height:28px;border-radius:50%;background:var(--gold-soft);color:var(--gold);font-weight:800;display:grid;place-items:center;margin-top:2px}
+.isheet .ok{margin-top:14px;width:100%;border:0;border-radius:14px;padding:13px;font:800 15px Tajawal,sans-serif;color:#fff;background:linear-gradient(135deg,#1d427a,var(--navy2));cursor:pointer}
+</style>
 </head>
 <body>
 
@@ -206,10 +246,14 @@ footer{margin-top:50px;background:var(--navy2);color:#b9c4da;padding:26px 0;font
     <nav id="nav">
       <button data-v="home" class="on">الرئيسية</button>
       <button data-v="fav">المفضلة <span id="favN"></span></button>
+      <button id="instTop" type="button">⬇ تطبيق</button>
     </nav>
   </div>
 </header>
 
+<div class="isheet" id="isheet" role="dialog" aria-modal="true" aria-label="طريقة التثبيت"><div class="pn">
+  <h3>كيف أثبّت التطبيق؟</h3><p id="isP"></p><ol id="isOl"></ol>
+  <button class="ok" id="isOk" type="button">فهمت</button></div></div>
 <!-- HOME -->
 <main id="v-home">
   <div class="hero"><div class="wrap">
@@ -224,8 +268,15 @@ footer{margin-top:50px;background:var(--navy2);color:#b9c4da;padding:26px 0;font
       <input id="q" type="search" placeholder="ابحث بعنوان الرسالة أو اسم الباحث…" autocomplete="off">
       <button type="submit">بحث</button>
     </form>
+    <section class="inst" id="inst" hidden aria-label="تثبيت التطبيق">
+      <button class="x" id="instX" type="button" aria-label="إخفاء">×</button>
+      <div class="ic"><img id="instImg" alt=""><i><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg></i></div>
+      <div class="tx"><b>ثبّت المكتبة الرقمية كتطبيق</b><span>افتحها من شاشتك الرئيسية مباشرة، بسرعة وبلا متصفح، على الهاتف أو الآيباد أو الحاسوب.</span></div>
+      <button class="go" id="instBtn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>تثبيت التطبيق</button>
+    </section>
   </div></div>
   <div class="wrap">
+    
     <div class="stats" id="stats"></div>
 <style>
 .gal{margin:26px 0 8px}
@@ -447,6 +498,35 @@ ss.addEventListener("mouseenter",stop);ss.addEventListener("mouseleave",play);
 let sx=null;ss.addEventListener("touchstart",e=>{sx=e.touches[0].clientX;stop()},{passive:true});
 ss.addEventListener("touchend",e=>{if(sx!==null){const d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>50)show(cur+(d<0?1:-1))}sx=null;play()});
 show(0);play();
+})();
+
+(function(){
+  const $=id=>document.getElementById(id),inst=$("inst"),top=$("instTop"),sh=$("isheet");
+  const logo=document.querySelector(".lg img");if(logo)$("instImg").src=logo.src;
+  const ua=navigator.userAgent,ios=/iPhone|iPad|iPod/i.test(ua)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
+  const standalone=matchMedia("(display-mode: standalone)").matches||navigator.standalone===true;
+  let dp=null,ready=false;
+  const KEY="instHide";
+  const hidden=()=>{try{return Date.now()-(+localStorage.getItem(KEY)||0)<6048e5}catch(e){return false}};
+  function show(){if(standalone)return;ready=true;top.classList.add("on");if(!hidden())inst.hidden=false}
+  addEventListener("beforeinstallprompt",e=>{e.preventDefault();dp=e;show()});
+  addEventListener("appinstalled",()=>{inst.hidden=true;top.classList.remove("on");dp=null});
+  if(ios&&!standalone&&/Safari/i.test(ua))show();
+  $("instX").onclick=()=>{inst.hidden=true;try{localStorage.setItem(KEY,Date.now())}catch(e){}};
+  function steps(){
+    const P=$("isP"),O=$("isOl");
+    if(ios){P.textContent="في متصفح Safari على الآيفون أو الآيباد:";O.innerHTML="<li>اضغط زر المشاركة (المربع الذي يخرج منه سهم) أسفل الشاشة.</li><li>مرّر القائمة واختر «إضافة إلى الشاشة الرئيسية».</li><li>اضغط «إضافة» وستجد المكتبة بين تطبيقاتك.</li>"}
+    else{P.textContent="من قائمة المتصفح:";O.innerHTML="<li>افتح قائمة المتصفح (النقاط الثلاث).</li><li>اختر «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية».</li><li>أكّد، وسيظهر التطبيق على شاشتك.</li>"}
+    sh.classList.add("on");
+  }
+  async function go(){
+    if(dp){try{dp.prompt();const r=await dp.userChoice;if(r&&r.outcome==="accepted"){inst.hidden=true;top.classList.remove("on")}}catch(e){}dp=null;return}
+    steps();
+  }
+  $("instBtn").onclick=go;top.onclick=()=>{inst.hidden=false;go()};
+  $("isOk").onclick=()=>sh.classList.remove("on");
+  sh.onclick=e=>{if(e.target===sh)sh.classList.remove("on")};
+  if("serviceWorker" in navigator&&location.protocol==="https:"){try{navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}}
 })();
 </script>
 </body>
